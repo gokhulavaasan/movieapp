@@ -7,6 +7,8 @@ import com.gvapps.movie.movieList.data.local.MovieDatabase
 import com.gvapps.movie.movieList.data.remote.MovieApi
 import com.gvapps.movie.movieList.data.repository.MovieRepositoryImpl
 import com.gvapps.movie.movieList.domain.repository.MovieRepository
+import com.gvapps.movie.movieList.domain.usecases.CategoryMovieUseCases
+import com.gvapps.movie.movieList.domain.usecases.DetailUseCases
 import com.gvapps.movie.movieList.domain.usecases.MovieUseCases
 import dagger.Module
 import dagger.Provides
@@ -76,8 +78,8 @@ object AppModule {
 		movieRepository: MovieRepository
 	): MovieUseCases {
 		return MovieUseCases(
-			upcomingMovieUseCases = UpcomingMovieUseCases(movieRepository),
-			popularMovieUseCases = PopularMovieUseCases(movieRepository),
+			categoryMovieUseCases = CategoryMovieUseCases(movieRepository),
+			detailUseCases = DetailUseCases(movieRepository),
 		)
 	}
 }

@@ -19,12 +19,12 @@ import com.gvapps.movie.movieList.presentation.mainactivity.MainState
 import com.gvapps.movie.movieList.presentation.mainactivity.MainUiEvents
 
 @Composable
-fun PopularMovieScreen(
+fun UpcomingMovieScreen(
 	navController: NavController,
 	movieState: MainState,
 	onEvent: (MainUiEvents) -> Unit
 ) {
-	if (movieState.popularMovieList.isEmpty()) {
+	if (movieState.upcomingMovieList.isEmpty()) {
 		Box(
 			modifier = Modifier.fillMaxSize(),
 			contentAlignment = Alignment.Center
@@ -38,18 +38,16 @@ fun PopularMovieScreen(
 			columns = GridCells.Fixed(2),
 			contentPadding = PaddingValues(vertical = 8.dp, horizontal = 4.dp)
 		) {
-			items(movieState.popularMovieList.size) {
+			items(movieState.upcomingMovieList.size) {
 				MovieItem(
 					navHostController = navController,
-					movie = movieState.popularMovieList[it]
+					movie = movieState.upcomingMovieList[it]
 				)
 				Spacer(modifier = Modifier.height(16.dp))
-				if (it >= (movieState.popularMovieList.size - 1) && !movieState.isLoading) {
-					onEvent(MainUiEvents.Paginate(Category.POPULAR))
+				if (it >= (movieState.upcomingMovieList.size - 1) && !movieState.isLoading) {
+					onEvent(MainUiEvents.Paginate(Category.UPCOMING))
 				}
 			}
 		}
 	}
-
-
 }
